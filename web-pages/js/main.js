@@ -1,12 +1,12 @@
 const queryParams = new URL(window.location).searchParams;
 const steps = {
     en: {
-        stepOne: "Step 1: Click the button at the bottom of the screen ",
-        stepTwo: "Step 2: Choose 'Add to Home Screen' "
+        stepOne: "Step 1: Click the <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> button at the bottom of the screen.",
+        stepTwo: "Step 2: Choose 'Add to Home Screen' <span class=\"fa-solid fa-square-plus\">&nbsp;</span>."
     },
     es: {
-        stepOne: "Paso 1: Haz click en el botón debajo de la pantalla ",
-        stepTwo: "Paso 2: Selecciona 'Añadir a la pantalla principal' "
+        stepOne: "Paso 1: Haz click en el botón <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> en la parte inferior de la pantalla.",
+        stepTwo: "Paso 2: Selecciona 'Añadir a la pantalla principal' <span class=\"fa-solid fa-square-plus\">&nbsp;</span>."
     }
 };
 const deviceTypeImages = {
@@ -24,16 +24,13 @@ function renderData() {
     let deviceID = getValidQueryParam(deviceTypeImages, "device_id", "");
 
     let stepOne = document.getElementById("stepOne");
-    let stepOneIcon = document.createElement("i");
-    stepOneIcon.classList = "fa-solid fa-arrow-up-from-bracket";
-    stepOne.append(steps[language].stepOne);
-    stepOne.appendChild(stepOneIcon);
+    // We use innerHTML here because the content is not coming from
+    // the user (it's fixed, and set by use). Otherwise, this could
+    // lead to XSS attacks.
+    stepOne.innerHTML = steps[language].stepOne;
 
     let stepTwo = document.getElementById("stepTwo");
-    let stepTwoIcon = document.createElement("i");
-    stepTwoIcon.classList = "fa-solid fa-square-plus";
-    stepTwo.append(steps[language].stepTwo);
-    stepTwo.appendChild(stepTwoIcon);
+    stepTwo.innerHTML = steps[language].stepTwo;
 
     let deviceTypeImage = document.getElementById("deviceTypeImage");
     deviceTypeImage.src = deviceTypeImages[deviceType];
