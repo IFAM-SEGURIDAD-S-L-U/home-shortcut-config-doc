@@ -1,0 +1,24 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f7;
+}
+
+#title {
+    color: #E62834;
+}
+
+#deviceTypeImage {
+    width: 200px;
+    height: 200px;
+    align-content: center;
+}
+
+.steps {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: left;
+}
