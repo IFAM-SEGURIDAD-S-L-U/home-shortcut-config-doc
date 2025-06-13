@@ -10,7 +10,7 @@ const steps = {
     }
 };
 const deviceTypeImages = {
-    utopic: "https://eurobrico.feriavalencia.com/wp-content/uploads/2024/09/Cilindro-IREKI.jpg"
+    utopic: "images/cilindro-ireki.jpg"
 };
 
 function getValidQueryParam(dict, queryName, defaultValue) {
