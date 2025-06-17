@@ -1,5 +1,10 @@
 const url = new URL(window.location);
 const queryParams = url.searchParams;
+const defaultTitle = {
+    en: "How to add a shortcut to the IFAM app in your home screen",
+    es: "Como añadir un acceso directo a la aplicación de IFAM en la pantalla principal",
+    eus: "Nola gehitu lasterbide bat Ifam aplikazioari zure orri nagusian"
+};
 const steps = {
     en: {
         stepOne: "Step 1: Click the <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> button at the bottom of the screen.",
@@ -8,6 +13,10 @@ const steps = {
     es: {
         stepOne: "Paso 1: Haz click en el botón <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> en la parte inferior de la pantalla.",
         stepTwo: "Paso 2: Selecciona 'Añadir a la pantalla principal' <span class=\"fa-solid fa-square-plus\">&nbsp;</span>."
+    },
+    eus: {
+        stepOne: "1. pausua: Pantallaren azpiko aldian agertzen den <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> botoia sakatu.",
+        stepTwo: "2. pausua: 'Gehitu orri naguasian' <span class=\"fa-solid fa-square-plus\">&nbsp;</span> hautatu."
     }
 };
 const deviceTypeImages = {
@@ -29,7 +38,11 @@ function renderData() {
 
     let language = getValidQueryParam(steps, "language", "en");
     let deviceType = getValidQueryParam(deviceTypeImages, "device_type", "utopic");
-    let deviceID = getValidQueryParam(deviceTypeImages, "device_id", "");
+    let deviceID = queryParams.get("device_id") ?? "";
+    let deviceName = queryParams.get("device_name") ?? defaultTitle[language];
+
+    let deviceNameTitle = document.getElementById("title");
+    deviceNameTitle.append(deviceName);
 
     let stepOne = document.getElementById("stepOne");
     // We use innerHTML here because the content is not coming from
