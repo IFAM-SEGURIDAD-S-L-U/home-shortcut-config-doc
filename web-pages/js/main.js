@@ -1,4 +1,5 @@
-const queryParams = new URL(window.location).searchParams;
+const url = new URL(window.location);
+const queryParams = url.searchParams;
 const steps = {
     en: {
         stepOne: "Step 1: Click the <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> button at the bottom of the screen.",
@@ -19,6 +20,13 @@ function getValidQueryParam(dict, queryName, defaultValue) {
 };
 
 function renderData() {
+    if (queryParams.get("from_shortcut")) {
+        window.location = "irekiapp://open?devId=" + deviceID;
+    } else {
+        url.searchParams.set("from_shortcut", true)
+        history.replaceState(null, null, url.href);
+    }
+
     let language = getValidQueryParam(steps, "language", "en");
     let deviceType = getValidQueryParam(deviceTypeImages, "device_type", "utopic");
     let deviceID = getValidQueryParam(deviceTypeImages, "device_id", "");
@@ -34,8 +42,4 @@ function renderData() {
 
     let deviceTypeImage = document.getElementById("deviceTypeImage");
     deviceTypeImage.src = deviceTypeImages[deviceType];
-
-    if (queryParams.get("redirect-intent")) {
-        window.location = "irekiapp://open?deviceid=" + deviceID;
-    }
 }
