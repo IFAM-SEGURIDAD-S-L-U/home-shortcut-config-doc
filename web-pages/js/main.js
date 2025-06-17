@@ -3,7 +3,7 @@ const queryParams = url.searchParams;
 const defaultTitle = {
     en: "How to add a shortcut to the IFAM app in your home screen",
     es: "Como añadir un acceso directo a la aplicación de IFAM en la pantalla principal",
-    eus: "Nola gehitu lasterbide bat Ifam aplikazioari zure orri nagusian"
+    eus: "Nola gehitu lasterbide bat IFAM aplikazioari zure orri nagusian"
 };
 const steps = {
     en: {
@@ -16,7 +16,7 @@ const steps = {
     },
     eus: {
         stepOne: "1. pausua: Pantallaren azpiko aldian agertzen den <span class=\"fa-solid fa-arrow-up-from-bracket\">&nbsp;</span> botoia sakatu.",
-        stepTwo: "2. pausua: 'Gehitu orri naguasian' <span class=\"fa-solid fa-square-plus\">&nbsp;</span> hautatu."
+        stepTwo: "2. pausua: 'Gehitu orri nagusian' <span class=\"fa-solid fa-square-plus\">&nbsp;</span> hautatu."
     }
 };
 const deviceTypeImages = {
