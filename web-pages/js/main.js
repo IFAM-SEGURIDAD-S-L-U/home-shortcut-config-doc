@@ -32,10 +32,20 @@ function renderData() {
     let language = getValidQueryParam(steps, "language", "en");
     let deviceType = getValidQueryParam(deviceTypeImages, "device_type", "utopic");
     let deviceID = queryParams.get("device_id") ?? "";
+    let redirectURL = new URL("irekiapp://open").searchParams.set("devId", deviceID);
     let deviceName = queryParams.get("device_name") ?? defaultTitle[language];
 
     if (queryParams.get("from_shortcut")) {
-        window.location = "irekiapp://open?devId=" + deviceID;
+        // We're adding this invisble link because apparently iOS 
+        // doesn't allow modifying the `location` for redirects
+        let invisibleLink = document.createElement("a");
+        invisibleLink.href = redirectURL.href;
+        invisibleLink.style.display = 'none';
+        document.body.appendChild(invisibleLink);
+        invisibleLink.click();
+        document.body.removeChild(invisibleLink);
+        
+        window.location.href = redirectURL.href;
     } else {
         url.searchParams.set("from_shortcut", true)
         history.replaceState(null, null, url.href);
