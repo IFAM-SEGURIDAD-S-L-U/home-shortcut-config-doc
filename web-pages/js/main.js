@@ -32,7 +32,8 @@ function renderData() {
     let language = getValidQueryParam(steps, "language", "en");
     let deviceType = getValidQueryParam(deviceTypeImages, "device_type", "utopic");
     let deviceID = queryParams.get("device_id") ?? "";
-    var redirectURL = new URL("irekiapp://open").searchParams.set("devId", deviceID);
+    let redirectURL = new URL("irekiapp://open");
+    redirectURL.searchParams.set("devId", deviceID)
     let deviceName = queryParams.get("device_name") ?? defaultTitle[language];
 
     if (queryParams.get("from_shortcut")) {
