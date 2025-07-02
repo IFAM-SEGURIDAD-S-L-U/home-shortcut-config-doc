@@ -45,8 +45,8 @@ function renderData() {
         document.body.appendChild(invisibleLink);
         invisibleLink.click();
         document.body.removeChild(invisibleLink);
-        
-        window.location.href = redirectURL.href;
+
+        window.close();
     } else {
         url.searchParams.set("from_shortcut", true)
         history.replaceState(null, null, url.href);
