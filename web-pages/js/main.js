@@ -28,12 +28,25 @@ function getValidQueryParam(dict, queryName, defaultValue) {
     return dict.hasOwnProperty(queryParam) ? queryParam : defaultValue;
 };
 
+function redirectOnClick() {
+    let deviceID = queryParams.get("device_id") ?? "";
+    let redirectURL = new URL("irekiapp://open");
+    redirectURL.searchParams.set("devId", deviceID);
+
+    let invisibleLink = document.createElement("a");
+    invisibleLink.href = redirectURL.href;
+    invisibleLink.style.display = 'none';
+    document.body.appendChild(invisibleLink);
+    invisibleLink.click();
+    document.body.removeChild(invisibleLink);
+}
+
 function renderData() {
     let language = getValidQueryParam(steps, "language", "en");
     let deviceType = getValidQueryParam(deviceTypeImages, "device_type", "utopic");
     let deviceID = queryParams.get("device_id") ?? "";
     let redirectURL = new URL("irekiapp://open");
-    redirectURL.searchParams.set("devId", deviceID)
+    redirectURL.searchParams.set("devId", deviceID);
     let deviceName = queryParams.get("device_name") ?? defaultTitle[language];
 
     if (queryParams.get("from_shortcut")) {
