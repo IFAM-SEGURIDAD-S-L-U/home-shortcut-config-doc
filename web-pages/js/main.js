@@ -19,6 +19,11 @@ const steps = {
         stepTwo: "2. pausua: 'Gehitu orri nagusian' <span class=\"fa-solid fa-square-plus\">&nbsp;</span> hautatu."
     }
 };
+const btnText = {
+    en: "Open IrekiApp",
+    es: "Abrir IrekiApp",
+    eus: "IrekiApp ireki"
+};
 const deviceTypeImages = {
     utopic: "images/cilindro-ireki.jpg"
 };
@@ -79,4 +84,7 @@ function renderData() {
 
     let deviceTypeImage = document.getElementById("deviceTypeImage");
     deviceTypeImage.src = deviceTypeImages[deviceType];
+
+    let redirectBtn = document.getElementById("redirectBtn");
+    redirectBtn.innerText = btnText[language];
 }
